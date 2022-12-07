@@ -1,0 +1,67 @@
+<div class="col-sm">
+  <h1>Filters</h1>
+  <div>
+    <form>
+      <div>
+        <mat-form-field class="km-custom-search-field">
+          <mat-label>Search By Product Name</mat-label>
+          <input
+            matInput
+            (keyup)="applySearchFilter($event)"
+            placeholder="shoes..."
+          />
+          <i class="fas fa-search"></i>
+        </mat-form-field>
+      </div>
+      
+      <div>
+        <mat-label id="example-radio-group-label">Sort By</mat-label>
+        <hr />
+        <mat-radio-group
+          aria-labelledby="example-radio-group-label"
+          class="example-radio-group"
+          [(ngModel)]="sortType"
+          (ngModelChange)="onSortByChange()"
+          [ngModelOptions]="{ standalone: true }"
+        >
+          <mat-radio-button *ngFor="let sort of sortList" [value]="sort.value">
+            {{ sort.label }}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <hr />
+      <div>
+        <mat-label>Search By Rating</mat-label>
+        <hr />
+        <span
+          *ngFor="let star of stars; let i = index"
+          (click)="onRatingChange(i + 1)"
+        >
+          <ng-container *ngIf="star; else noStar">⭐</ng-container>
+          <ng-template #noStar>★</ng-template>
+        </span>
+      </div>
+      <hr />
+      <div class="numberfield">
+        <mat-label>Search By Price</mat-label>
+        <div class="min">
+        <span>Min</span><input
+          type="text"
+          [(ngModel)]="minPrice"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+      <div class="max">
+         <span>Max</span><input
+          type="text"
+          [(ngModel)]="maxPrice"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+        <button (click)="onSearchByPrice()">Go</button>
+      </div>
+      <hr />
+      <button (click)="onReset()">Reset</button>
+    </form>
+  </div>
+</div>

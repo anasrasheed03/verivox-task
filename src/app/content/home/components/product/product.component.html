@@ -1,0 +1,29 @@
+<img src="{{ './assets/images/' + product.image }}" class="card-img-top" />
+<div class="card-body">
+  <h5 class="card-title">{{ product.title }}</h5>
+  <p class="card-text">Price: {{ product.price | currency : "€" }}</p>
+</div>
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">Id: {{ product.id }}</li>
+  <li class="list-group-item">
+    Eatable: {{ product.isEdible ? "Yes" : "No" }}
+  </li>
+  <li class="list-group-item">Vestibulum at eros</li>
+  <li class="list-group-item">
+    Rating:
+    <span *ngFor="let star of stars; let i = index">
+      <ng-container *ngIf="star; else noStar">⭐</ng-container>
+      <ng-template #noStar>★</ng-template>
+    </span>
+  </li>
+  <li class="list-group-item">
+    <mat-chip class="example-box" *ngFor="let tag of product.tags">
+      {{ tag }}
+    </mat-chip>
+  </li>
+</ul>
+<div class="card-body">
+  <button class="card-link" (click)="showDetails()">
+    {{ !isDetailVisible ? "Show Details" : "Hide Details" }}
+  </button>
+</div>

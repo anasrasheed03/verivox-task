@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+      <app-filters
+        (filteredRecords)="getFilteredRecords($event)"
+        [productData]="productData"
+      ></app-filters>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
+      <app-product-list
+        [productData]="filterData.length > 0 ? filterData : productData"
+      ></app-product-list>
+    </div>
+  </div>
+</div>
