@@ -3,7 +3,7 @@
   <div>
     <form>
       <div>
-        <mat-form-field class="km-custom-search-field">
+        <mat-form-field class="custom-search-field">
           <mat-label>Search By Product Name</mat-label>
           <input
             matInput
@@ -13,13 +13,13 @@
           <i class="fas fa-search"></i>
         </mat-form-field>
       </div>
-      
+
       <div>
-        <mat-label id="example-radio-group-label">Sort By</mat-label>
+        <mat-label id="radio-group-label">Sort By</mat-label>
         <hr />
         <mat-radio-group
-          aria-labelledby="example-radio-group-label"
-          class="example-radio-group"
+          aria-labelledby="radio-group-label"
+          class="radio-group"
           [(ngModel)]="sortType"
           (ngModelChange)="onSortByChange()"
           [ngModelOptions]="{ standalone: true }"
@@ -45,19 +45,21 @@
       <div class="numberfield">
         <mat-label>Search By Price</mat-label>
         <div class="min">
-        <span>Min</span><input
-          type="text"
-          [(ngModel)]="minPrice"
-          [ngModelOptions]="{ standalone: true }"
-        />
-      </div>
-      <div class="max">
-         <span>Max</span><input
-          type="text"
-          [(ngModel)]="maxPrice"
-          [ngModelOptions]="{ standalone: true }"
-        />
-      </div>
+          <span>Min</span
+          ><input
+            type="text"
+            [(ngModel)]="minPrice"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </div>
+        <div class="max">
+          <span>Max</span
+          ><input
+            type="text"
+            [(ngModel)]="maxPrice"
+            [ngModelOptions]="{ standalone: true }"
+          />
+        </div>
         <button (click)="onSearchByPrice()">Go</button>
       </div>
       <hr />

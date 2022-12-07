@@ -13,11 +13,12 @@ export class HomeComponent implements OnInit {
   constructor(private service: HomeService) {}
 
   ngOnInit(): void {
+    //revoke api method
     this.getData();
   }
 
-  private getData(): any {
-    this.service.getDataFromAPI().subscribe(
+  private async getData(): Promise<any> {
+    await this.service.getDataFromAPI().subscribe(
       (res: any) => {
         this.productData = res;
         console.log(this.productData);
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  //get filtered data from filter component
   public getFilteredRecords(newRecords: PRODUCTS): any {
     this.filterData = newRecords;
   }

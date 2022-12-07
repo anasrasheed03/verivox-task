@@ -23,6 +23,7 @@ export class FiltersComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  //search product filter by product name
   public applySearchFilter(event: KeyboardEvent) {
     let filterValue = (event.target as HTMLInputElement).value;
     const newRecords = this.productData.filter(
@@ -32,6 +33,7 @@ export class FiltersComponent implements OnInit {
     this.filteredRecords.emit(newRecords);
   }
 
+  //sort product through title, low & high price
   public onSortByChange() {
     let sortedRecords;
     switch (this.sortType) {
@@ -73,6 +75,7 @@ export class FiltersComponent implements OnInit {
     return this.filteredRecords.emit(sortedRecords);
   }
 
+  // search product through rating
   public onRatingChange(rating: number) {
     this.stars = this.stars.map((_, i) => rating > i);
     const count = this.stars.filter(Boolean).length;
@@ -83,16 +86,20 @@ export class FiltersComponent implements OnInit {
     this.filteredRecords.emit(newRecords);
   }
 
+  //search product through price
   public onSearchByPrice(): any {
-    let newRecords = this.productData.filter(
-      (product) =>
-        product.price >= this.minPrice && product.price <= this.maxPrice
-    );
-    newRecords = newRecords.sort((low, high) => low.price - high.price);
-    this.onReset();
-    this.filteredRecords.emit(newRecords);
+    if (this.minPrice < this.maxPrice) {
+      let newRecords = this.productData.filter(
+        (product) =>
+          product.price >= this.minPrice && product.price <= this.maxPrice
+      );
+      newRecords = newRecords.sort((low, high) => low.price - high.price);
+      this.onReset();
+      this.filteredRecords.emit(newRecords);
+    }
   }
 
+  //reset
   public onReset(): any {
     this.maxPrice = '';
     this.minPrice = '';
